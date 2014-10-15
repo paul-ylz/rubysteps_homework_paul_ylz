@@ -2,16 +2,16 @@ require 'date'
 
 class DailyTrackerApp
   def initialize(tracker, handler, db)
-    @tracker = tracker
-    @handler = handler
+    @tracker     = tracker
+    @handler     = handler
     @handler.app = self
-    @db = db
+    @db          = db
   end
 
   def self.build(db_filename)
     tracker = DailyTracker.new
     handler = InputHandler.new
-    db = Database.new(db_filename)
+    db      = Database.new(db_filename)
 
     new tracker, handler, db
   end
@@ -50,16 +50,16 @@ class DailyTrackerApp
 Usage:
 
 # report entire daily tracker
-ruby exercise_1_storyish.rb r
+ruby app.rb r
 
 # a single day's report
-ruby exercise_1_storyish.rb r 2014-08-04
+ruby app.rb r 2014-08-04
 
 # add a food entry (b = breakfast, l = lunch, d = dinner)
-ruby exercise_1_storyish.rb a f l "ham and eggs"
+ruby app.rb a f l "ham and eggs"
 
-# add an exercise entry (not yet implemented)
-ruby exercise_1_storyish.rb a e "kettlebell swings"
+# add an exercise entry
+ruby app.rb a e "kettlebell swings"
 END
   end
 end

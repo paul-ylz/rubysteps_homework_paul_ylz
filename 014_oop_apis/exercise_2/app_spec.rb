@@ -3,8 +3,8 @@ require 'app'
 
 describe 'DailyTrackerApp' do
   let(:db_filename) { 'test_db.txt' }
-  let(:db) { Database.new db_filename }
-  let(:app) { DailyTrackerApp.build db_filename }
+  let(:db)          { Database.new db_filename }
+  let(:app)         { DailyTrackerApp.build db_filename }
 
   before do
     File.open(db_filename, 'w') { |f| f.truncate 0 }
@@ -89,7 +89,3 @@ END
   end
 
 end
-
-# Notes
-# Interface inconsistency: run needs an array, add_food_entry takes separate string arguments
-# Opportunity for polymorphism: can the entry type be deciphered from the method name?
