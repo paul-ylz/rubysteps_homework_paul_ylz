@@ -31,13 +31,11 @@ class DailyTrackerApp
   end
 
   def add_food_entry(meal, food)
-    @tracker.add_entry ['f', meal, food]
-    @tracker.save_to @db
+    add_entry ['f', meal, food]
   end
 
   def add_exercise_entry(exercise)
-    @tracker.add_entry ['e', exercise]
-    @tracker.save_to @db
+    add_entry ['e', exercise]
   end
 
   def usage_notes
