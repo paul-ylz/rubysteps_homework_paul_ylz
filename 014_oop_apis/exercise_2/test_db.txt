@@ -1,9 +1,9 @@
+f:d:tuna salad:2014-10-15
+f:d:pad kra pao with fried egg:2014-10-14
+f:l:ham and eggs:2014-10-15
+f:l:waffles and ice cream:2014-10-13
+e:zumba 1 hour:2014-10-14
+e:cycle 1 hour:2014-10-13
 f:d:blue cheese steak:2014-10-13
 e:starjumps:2014-10-15
-e:cycle 1 hour:2014-10-13
-f:d:pad kra pao with fried egg:2014-10-14
 f:l:birthday cake:2014-10-14
-e:zumba 1 hour:2014-10-14
-f:l:waffles and ice cream:2014-10-13
-f:d:tuna salad:2014-10-15
-f:l:ham and eggs:2014-10-15
