@@ -21,22 +21,32 @@ class ReportEntriesCommand
   end
 end
 
+class AddExerciseEntryCommand
+  def initialize(exercise)
+    @exercise = exercise
+  end
+
+  def execute
+    TrackerWriteService.add_exercise_entry @exercise
+  end
+end
+
 class UsageNotesCommand
   def execute
     $stderr.puts <<END
 Usage:
 
 # report entire daily tracker
-ruby exercise_1_storyish.rb r
+ruby app.rb r
 
 # a single day's report
-ruby exercise_1_storyish.rb r 2014-08-04
+ruby app.rb r 2014-08-04
 
 # add a food entry (b = breakfast, l = lunch, d = dinner)
-ruby exercise_1_storyish.rb a f l "ham and eggs"
+ruby app.rb a f l "ham and eggs"
 
 # add an exercise entry (not yet implemented)
-ruby exercise_1_storyish.rb a e "kettlebell swings"
+ruby app.rb a e "kettlebell swings"
 END
   end
 end
@@ -56,6 +66,14 @@ class TrackerWriteService
     DatabaseService.load_tracker tracker
 
     tracker.add_food_entry meal, food
+    DatabaseService.save_tracker tracker
+  end
+
+  def self.add_exercise_entry(exercise)
+    tracker = DailyTracker.new
+    DatabaseService.load_tracker tracker
+
+    tracker.add_exercise_entry exercise
     DatabaseService.save_tracker tracker
   end
 end
@@ -97,6 +115,10 @@ class DailyTracker
     @new_entry = ['f', meal, food, Date.today.to_s]
   end
 
+  def add_exercise_entry(exercise)
+    @new_entry = ['e', exercise, Date.today.to_s]
+  end
+
   def load_from(db)
     entries.clear
     db.entries.each {|e| load_entry e }
@@ -126,6 +148,7 @@ class DailyTracker
   def build_report_line(day_entries)
     report_line = [day_entries.first]
     report_line += day_entries.last['f'].map {|e| e[2] }
+    report_line += day_entries.last['e'].map {|e| e[1] }
     report_line.join("\n")
   end
 end
