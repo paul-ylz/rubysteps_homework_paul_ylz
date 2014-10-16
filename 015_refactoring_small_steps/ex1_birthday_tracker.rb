@@ -61,4 +61,5 @@ def delete_entry(name)
   File.open('birthdays.txt', 'w') do |file|
     all_entries.each { |entry| file << entry }
   end
+
 end
